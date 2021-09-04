@@ -4,20 +4,27 @@ public class Character {
 
     private long id;
     private String name;
-    private Class characterClass;
+    private CharacterClass characterClass;
     private Race race;
     private byte[] design;
     private String Skill1;
     private String Skill2;
     private String Skill3;
 
-    public Character(String name, Class characterClass, Race race, String skill1, String skill2, String skill3) {
+    public Character(String name, CharacterClass characterClass, Race race, String skill1) {
         this.name = name;
         this.characterClass = characterClass;
         this.race = race;
         Skill1 = skill1;
-        Skill2 = skill2;
-        Skill3 = skill3;
+
+    }
+
+    public Character(long id, String name, CharacterClass characterClass, Race race, String skill1) {
+        this.id = id;
+        this.name = name;
+        this.characterClass = characterClass;
+        this.race = race;
+        Skill1 = skill1;
     }
 
     public long getId() {
@@ -36,11 +43,11 @@ public class Character {
         this.name = name;
     }
 
-    public Class getCharacterClass() {
+    public CharacterClass getCharacterClass() {
         return characterClass;
     }
 
-    public void setCharacterClass(Class characterClass) {
+    public void setCharacterClass(CharacterClass characterClass) {
         this.characterClass = characterClass;
     }
 
@@ -83,4 +90,14 @@ public class Character {
     public void setSkill3(String skill3) {
         Skill3 = skill3;
     }
+
+    @Override
+    public String toString() {
+        return id + " - " +
+                name + "," +
+                characterClass + "," +
+                race +
+                Skill1;
+    }
+
 }

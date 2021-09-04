@@ -1,8 +1,12 @@
 package dataBase;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import models.Character;
+import models.CharacterClass;
+import models.Race;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class DBEngine {
@@ -34,5 +38,36 @@ public class DBEngine {
         }
     }
 
+    public List<Character> listAllCharachter() {
+        String query = "SELECT * FROM " + DBHelper.TABLE_PLAYABLE_CHARACTER;
+        List<Character> characters = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+
+                long chachterId = resultSet.getLong(DBHelper.CHARACTER_ID);
+                String name = resultSet.getString(DBHelper.CHARACTER_NAME);
+                String classFromDB = resultSet.getString(DBHelper.CHARACTER_CLASS).toUpperCase();
+                CharacterClass characterClass = CharacterClass.valueOf(classFromDB);
+                String raceFromDB = resultSet.getString(DBHelper.CHARACTER_RACE).toUpperCase();
+                Race race = Race.valueOf(raceFromDB);
+              //  String skill = resultSet.getString(DBHelper.CHARACTER_SKILL1);
+
+                Character character = new Character(chachterId,name,characterClass,race," Hit Hard");
+                System.out.println(character);
+                characters.add(character);
+
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+return characters;
+    }
 
 }
