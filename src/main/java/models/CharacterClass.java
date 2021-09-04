@@ -3,7 +3,7 @@ package models;
 public enum CharacterClass {
     MAGE,
     WARRIOR,
-    ROUGE,
+    ROGUE,
     PRIEST,
     SHAMAN;
 }
