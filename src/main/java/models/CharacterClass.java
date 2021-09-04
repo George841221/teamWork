@@ -6,4 +6,9 @@ public enum CharacterClass {
     ROGUE,
     PRIEST,
     SHAMAN;
+
+    public int getDBIndex(){
+        return ordinal() +1;
+    }
+
 }

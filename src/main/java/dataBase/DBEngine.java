@@ -2,12 +2,14 @@ package dataBase;
 
 import models.Character;
 import models.CharacterClass;
+import models.Player;
 import models.Race;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Scanner;
 
 public class DBEngine {
 
@@ -70,4 +72,37 @@ public class DBEngine {
 return characters;
     }
 
-}
+    public List<Player> listAllPlayer(){
+
+            String query = "SELECT * FROM " + DBHelper.TABLE_PLAYER;
+            List<Player> players = new ArrayList<>();
+
+            try {
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+
+                while (resultSet.next()) {
+
+
+                    String name = resultSet.getString(DBHelper.PLAYER_NAME);
+                    String email = resultSet.getString(DBHelper.PLAYER_EMAIL);
+
+                    Player player = new Player(name,email);
+                    System.out.println(player);
+                    players.add(player);
+
+
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return players;
+        }
+
+
+    }
+
+
+

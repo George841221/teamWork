@@ -8,6 +8,11 @@ public class Player {
     private String email;
     private Timestamp regDate;
 
+
+
+    public Player() {
+    }
+
     public Player(String name, String email) {
         this.name = name;
         this.email = email;
@@ -28,4 +33,12 @@ public class Player {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return
+                name + "," +
+                email;
+    }
+
 }

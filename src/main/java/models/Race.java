@@ -6,4 +6,9 @@ public enum Race {
     ELF,
     UNDEAD,
     HALFLING;
+
+    public int getDBIndex(){
+        return ordinal() +1;
+    }
+
 }

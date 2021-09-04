@@ -6,6 +6,7 @@ public class Main {
         if (engine.isConnected()) {
 
             engine.listAllCharachter();
+            engine.listAllPlayer();
         }
     }
 }
